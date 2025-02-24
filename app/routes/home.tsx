@@ -1,12 +1,10 @@
 import type { Route } from "./+types/home";
-import TodoList from "./board/board";
-import TodoApp from "./board/board";
-import KanbanBoard from "./board/board";
+import TodoList from "./board";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "To-Do App" },
+    { name: "description", content: "Create a to-do on the go!" },
   ];
 }
 
