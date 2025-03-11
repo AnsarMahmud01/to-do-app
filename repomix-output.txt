@@ -1,0 +1,1687 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+================================================================
+File Summary
+================================================================
+
+Purpose:
+--------
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+
+File Format:
+------------
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Multiple file entries, each consisting of:
+  a. A separator line (================)
+  b. The file path (File: path/to/file)
+  c. Another separator line
+  d. The full contents of the file
+  e. A blank line
+
+Usage Guidelines:
+-----------------
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+
+Notes:
+------
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+
+Additional Info:
+----------------
+
+================================================================
+Directory Structure
+================================================================
+.dockerignore
+.gitignore
+app/app.css
+app/components/board/AddTodo.tsx
+app/components/board/TodoItem.tsx
+app/components/header/Header.tsx
+app/components/ui/avatar.tsx
+app/components/ui/badge.tsx
+app/components/ui/button.tsx
+app/components/ui/card.tsx
+app/components/ui/input.tsx
+app/components/ui/tabs.tsx
+app/lib/utils.ts
+app/root.tsx
+app/routes.ts
+app/routes/board/Dashboard.tsx
+app/routes/board/index.tsx
+app/routes/board/WelcomeSection.tsx
+app/routes/home.tsx
+app/routes/tasks/TaskCard.tsx
+app/routes/tasks/TaskStatusSection.tsx
+app/store/useTodoStore.ts
+app/types/Task.ts
+components.json
+Dockerfile
+package.json
+react-router.config.ts
+README.md
+tsconfig.json
+vite.config.ts
+
+================================================================
+Files
+================================================================
+
+================
+File: .dockerignore
+================
+.react-router
+build
+node_modules
+README.md
+
+================
+File: .gitignore
+================
+.DS_Store
+/node_modules/
+
+# React Router
+/.react-router/
+/build/
+
+================
+File: app/app.css
+================
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.129 0.042 264.695);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.129 0.042 264.695);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.129 0.042 264.695);
+  --primary: oklch(0.208 0.042 265.755);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+  --secondary: oklch(0.968 0.007 247.896);
+  --secondary-foreground: oklch(0.208 0.042 265.755);
+  --muted: oklch(0.968 0.007 247.896);
+  --muted-foreground: oklch(0.554 0.046 257.417);
+  --accent: oklch(0.968 0.007 247.896);
+  --accent-foreground: oklch(0.208 0.042 265.755);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: oklch(0.929 0.013 255.508);
+  --input: oklch(0.929 0.013 255.508);
+  --ring: oklch(0.704 0.04 256.788);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.984 0.003 247.858);
+  --sidebar-foreground: oklch(0.129 0.042 264.695);
+  --sidebar-primary: oklch(0.208 0.042 265.755);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.968 0.007 247.896);
+  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
+  --sidebar-border: oklch(0.929 0.013 255.508);
+  --sidebar-ring: oklch(0.704 0.04 256.788);
+}
+
+.dark {
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.129 0.042 264.695);
+  --card-foreground: oklch(0.984 0.003 247.858);
+  --popover: oklch(0.129 0.042 264.695);
+  --popover-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.984 0.003 247.858);
+  --primary-foreground: oklch(0.208 0.042 265.755);
+  --secondary: oklch(0.279 0.041 260.031);
+  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --muted: oklch(0.279 0.041 260.031);
+  --muted-foreground: oklch(0.704 0.04 256.788);
+  --accent: oklch(0.279 0.041 260.031);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.279 0.041 260.031);
+  --input: oklch(0.279 0.041 260.031);
+  --ring: oklch(0.446 0.043 257.281);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.208 0.042 265.755);
+  --sidebar-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.279 0.041 260.031);
+  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-border: oklch(0.279 0.041 260.031);
+  --sidebar-ring: oklch(0.446 0.043 257.281);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+================
+File: app/components/board/AddTodo.tsx
+================
+import { useState } from "react";
+import useTodoStore from "@/store/useTodoStore";
+
+export const AddTodo: React.FC = () => {
+  const [title, setTitle] = useState("");
+  const addTodo = useTodoStore((state) => state.addTodo);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (title.trim()) {
+      addTodo(title);
+      setTitle("");
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="mb-4">
+      <div className="flex gap-2">
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Add new todo..."
+          className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <button
+          type="submit"
+          className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+        >
+          Add
+        </button>
+      </div>
+    </form>
+  );
+};
+
+================
+File: app/components/board/TodoItem.tsx
+================
+import type { TodoItemProps } from "@/routes/board";
+import useTodoStore from "@/store/useTodoStore";
+
+export const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
+  const deleteTodo = useTodoStore((state) => state.deleteTodo);
+  const completedTodo = useTodoStore((state) => state.completedTodo);
+
+  return (
+    <li className="flex items-center justify-between p-4 border-b border-gray-200">
+      <div className="flex items-center space-x-4">
+        <input
+          type="checkbox"
+          checked={todo.completed}
+          onClick={() => completedTodo(todo.id)}
+          className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+          readOnly
+        />
+        <span
+          className={`text-lg ${
+            todo.completed ? "line-through text-gray-500" : "text-gray-900"
+          }`}
+        >
+          {todo.title}
+        </span>
+      </div>
+      <button
+        onClick={() => deleteTodo(todo.id)}
+        className="px-3 py-1 text-sm text-red-600 hover:text-red-800 transition-colors"
+      >
+        Delete
+      </button>
+    </li>
+  );
+};
+
+================
+File: app/components/header/Header.tsx
+================
+// components/Header.tsx
+import { Search } from "lucide-react";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
+
+const Header = () => {
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString("en-US", {
+    weekday: "long",
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+
+  return (
+    <div className="flex justify-between items-center mb-8">
+      <div className="flex items-center">
+        <h1 className="text-2xl font-bold mr-10">
+          <span className="text-red-500">Dash</span>board
+        </h1>
+        <div className="relative">
+          <Input
+            type="text"
+            placeholder="Search your task here..."
+            className="w-64 pr-10 rounded-full"
+          />
+          <Button
+            size="sm"
+            className="absolute right-1 top-1/2 -translate-y-1/2 rounded-full bg-red-500 hover:bg-red-600 p-1 h-8 w-8"
+          >
+            <Search className="h-4 w-4" />
+          </Button>
+        </div>
+      </div>
+      <div className="text-right">
+        <p className="font-medium">{formattedDate.split(",")[0]}</p>
+        <p className="text-gray-500 text-sm">
+          {formattedDate.split(",").slice(1).join("")}
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default Header;
+
+================
+File: app/components/ui/avatar.tsx
+================
+import * as React from "react";
+import * as AvatarPrimitive from "@radix-ui/react-avatar";
+
+import { cn } from "@/lib/utils";
+
+function Avatar({
+  className,
+  ...props
+}: React.ComponentProps<typeof AvatarPrimitive.Root>) {
+  return (
+    <AvatarPrimitive.Root
+      data-slot="avatar"
+      className={cn(
+        "relative flex size-8 shrink-0 overflow-hidden rounded-full",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function AvatarImage({
+  className,
+  ...props
+}: React.ComponentProps<typeof AvatarPrimitive.Image>) {
+  return (
+    <AvatarPrimitive.Image
+      data-slot="avatar-image"
+      className={cn("aspect-square size-full", className)}
+      {...props}
+    />
+  );
+}
+
+function AvatarFallback({
+  className,
+  ...props
+}: React.ComponentProps<typeof AvatarPrimitive.Fallback>) {
+  return (
+    <AvatarPrimitive.Fallback
+      data-slot="avatar-fallback"
+      className={cn(
+        "bg-muted flex size-full items-center justify-center rounded-full",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+export { Avatar, AvatarImage, AvatarFallback };
+
+================
+File: app/components/ui/badge.tsx
+================
+import * as React from "react"
+import { Slot } from "@radix-ui/react-slot"
+import { cva, type VariantProps } from "class-variance-authority"
+
+import { cn } from "@/lib/utils"
+
+const badgeVariants = cva(
+  "inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden",
+  {
+    variants: {
+      variant: {
+        default:
+          "border-transparent bg-primary text-primary-foreground [a&]:hover:bg-primary/90",
+        secondary:
+          "border-transparent bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/90",
+        destructive:
+          "border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40",
+        outline:
+          "text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+)
+
+function Badge({
+  className,
+  variant,
+  asChild = false,
+  ...props
+}: React.ComponentProps<"span"> &
+  VariantProps<typeof badgeVariants> & { asChild?: boolean }) {
+  const Comp = asChild ? Slot : "span"
+
+  return (
+    <Comp
+      data-slot="badge"
+      className={cn(badgeVariants({ variant }), className)}
+      {...props}
+    />
+  )
+}
+
+export { Badge, badgeVariants }
+
+================
+File: app/components/ui/button.tsx
+================
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
+
+import { cn } from "@/lib/utils";
+
+const buttonVariants = cva(
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-[color,box-shadow] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+  {
+    variants: {
+      variant: {
+        default:
+          "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
+        destructive:
+          "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40",
+        outline:
+          "border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground",
+        secondary:
+          "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline",
+      },
+      size: {
+        default: "h-9 px-4 py-2 has-[>svg]:px-3",
+        sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
+        lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
+        icon: "size-9",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+);
+
+function Button({
+  className,
+  variant,
+  size,
+  asChild = false,
+  ...props
+}: React.ComponentProps<"button"> &
+  VariantProps<typeof buttonVariants> & {
+    asChild?: boolean;
+  }) {
+  const Comp = asChild ? Slot : "button";
+
+  return (
+    <Comp
+      data-slot="button"
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    />
+  );
+}
+
+export { Button, buttonVariants };
+
+================
+File: app/components/ui/card.tsx
+================
+import * as React from "react";
+
+import { cn } from "@/lib/utils";
+
+const Card = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "rounded-lg border bg-card text-card-foreground shadow-sm",
+      className
+    )}
+    {...props}
+  />
+));
+Card.displayName = "Card";
+
+const CardHeader = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex flex-col space-y-1.5 p-6", className)}
+    {...props}
+  />
+));
+CardHeader.displayName = "CardHeader";
+
+const CardTitle = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "text-2xl font-semibold leading-none tracking-tight",
+      className
+    )}
+    {...props}
+  />
+));
+CardTitle.displayName = "CardTitle";
+
+const CardDescription = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("text-sm text-muted-foreground", className)}
+    {...props}
+  />
+));
+CardDescription.displayName = "CardDescription";
+
+const CardContent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
+));
+CardContent.displayName = "CardContent";
+
+const CardFooter = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex items-center p-6 pt-0", className)}
+    {...props}
+  />
+));
+CardFooter.displayName = "CardFooter";
+
+export {
+  Card,
+  CardHeader,
+  CardFooter,
+  CardTitle,
+  CardDescription,
+  CardContent,
+};
+
+================
+File: app/components/ui/input.tsx
+================
+import * as React from "react";
+
+import { cn } from "@/lib/utils";
+
+function Input({ className, type, ...props }: React.ComponentProps<"input">) {
+  return (
+    <input
+      type={type}
+      data-slot="input"
+      className={cn(
+        "border-input file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
+        "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+export { Input };
+
+================
+File: app/components/ui/tabs.tsx
+================
+import * as React from "react"
+import * as TabsPrimitive from "@radix-ui/react-tabs"
+
+import { cn } from "@/lib/utils"
+
+function Tabs({
+  className,
+  ...props
+}: React.ComponentProps<typeof TabsPrimitive.Root>) {
+  return (
+    <TabsPrimitive.Root
+      data-slot="tabs"
+      className={cn("flex flex-col gap-2", className)}
+      {...props}
+    />
+  )
+}
+
+function TabsList({
+  className,
+  ...props
+}: React.ComponentProps<typeof TabsPrimitive.List>) {
+  return (
+    <TabsPrimitive.List
+      data-slot="tabs-list"
+      className={cn(
+        "bg-muted text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-lg p-1",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+function TabsTrigger({
+  className,
+  ...props
+}: React.ComponentProps<typeof TabsPrimitive.Trigger>) {
+  return (
+    <TabsPrimitive.Trigger
+      data-slot="tabs-trigger"
+      className={cn(
+        "data-[state=active]:bg-background data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring inline-flex flex-1 items-center justify-center gap-1.5 rounded-md px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+function TabsContent({
+  className,
+  ...props
+}: React.ComponentProps<typeof TabsPrimitive.Content>) {
+  return (
+    <TabsPrimitive.Content
+      data-slot="tabs-content"
+      className={cn("flex-1 outline-none", className)}
+      {...props}
+    />
+  )
+}
+
+export { Tabs, TabsList, TabsTrigger, TabsContent }
+
+================
+File: app/lib/utils.ts
+================
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+================
+File: app/root.tsx
+================
+import {
+  isRouteErrorResponse,
+  Links,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+} from "react-router";
+
+import type { Route } from "./+types/root";
+import "./app.css";
+
+export const links: Route.LinksFunction = () => [
+  { rel: "preconnect", href: "https://fonts.googleapis.com" },
+  {
+    rel: "preconnect",
+    href: "https://fonts.gstatic.com",
+    crossOrigin: "anonymous",
+  },
+  {
+    rel: "stylesheet",
+    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+  },
+];
+
+export function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        {children}
+        <ScrollRestoration />
+        <Scripts />
+      </body>
+    </html>
+  );
+}
+
+export default function App() {
+  return <Outlet />;
+}
+
+export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
+  let message = "Oops!";
+  let details = "An unexpected error occurred.";
+  let stack: string | undefined;
+
+  if (isRouteErrorResponse(error)) {
+    message = error.status === 404 ? "404" : "Error";
+    details =
+      error.status === 404
+        ? "The requested page could not be found."
+        : error.statusText || details;
+  } else if (import.meta.env.DEV && error && error instanceof Error) {
+    details = error.message;
+    stack = error.stack;
+  }
+
+  return (
+    <main className="pt-16 p-4 container mx-auto">
+      <h1>{message}</h1>
+      <p>{details}</p>
+      {stack && (
+        <pre className="w-full p-4 overflow-x-auto">
+          <code>{stack}</code>
+        </pre>
+      )}
+    </main>
+  );
+}
+
+================
+File: app/routes.ts
+================
+import { type RouteConfig, index } from "@react-router/dev/routes";
+
+export default [index("routes/home.tsx")] satisfies RouteConfig;
+
+================
+File: app/routes/board/Dashboard.tsx
+================
+// components/Dashboard.tsx
+import { useState } from "react";
+import { PlusCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Header from "@/components/header/Header";
+import WelcomeSection from "./WelcomeSection";
+import TaskCard from "../tasks/TaskCard";
+// import TaskStatusSection from "./dashboard/TaskStatusSection";
+import type { Task } from "@/types/Task";
+import TaskStatusSection from "../tasks/TaskStatusSection";
+
+const Dashboard = () => {
+  // Это можно будет заменить на данные из Zustand
+  const [tasks, setTasks] = useState<Task[]>([
+    {
+      id: "1",
+      title: "Attend Nischal's Birthday Party",
+      description:
+        "Buy gifts on the way and pick up cake from the bakery. (6 PM | Fresh Elements)",
+      dueDate: new Date("2023-06-20"),
+      priority: "Moderate",
+      status: "Not Started",
+      createdAt: new Date("2023-06-15"),
+      imageUrl:
+        "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=150&h=150&auto=format",
+    },
+    {
+      id: "2",
+      title: "Landing Page Design for TravelDays",
+      description:
+        "Get the work done by EOD and discuss with client before leaving. (4 PM | Meeting Room)",
+      dueDate: new Date("2023-06-18"),
+      priority: "Moderate",
+      status: "In Progress",
+      createdAt: new Date("2023-06-14"),
+      imageUrl:
+        "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=150&h=150&auto=format",
+    },
+    {
+      id: "3",
+      title: "Presentation on Final Product",
+      description:
+        "Make sure everything is functioning and all necessities are properly met. Prepare the team and get the documents ready for presentation.",
+      dueDate: new Date("2023-06-17"),
+      priority: "Moderate",
+      status: "In Progress",
+      createdAt: new Date("2023-06-12"),
+      imageUrl:
+        "https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=150&h=150&auto=format",
+    },
+    {
+      id: "4",
+      title: "Walk the dog",
+      description: "Take the dog to the park and bring treats as well.",
+      dueDate: new Date("2023-06-15"),
+      priority: "Low",
+      status: "Completed",
+      createdAt: new Date("2023-06-13"),
+      completedAt: new Date("2023-06-15"),
+      imageUrl:
+        "https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?q=80&w=150&h=150&auto=format",
+    },
+    {
+      id: "5",
+      title: "Conduct meeting",
+      description: "Meet with the client and finalize requirements.",
+      dueDate: new Date("2023-06-14"),
+      priority: "High",
+      status: "Completed",
+      createdAt: new Date("2023-06-12"),
+      completedAt: new Date("2023-06-14"),
+      imageUrl:
+        "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=150&h=150&auto=format",
+    },
+  ]);
+
+  // Фильтруем задачи по статусу
+  const pendingTasks = tasks.filter((task) => task.status !== "Completed");
+  const completedTasks = tasks.filter((task) => task.status === "Completed");
+
+  // Статистика для круговых диаграмм
+  const taskStats = {
+    completed: tasks.filter((task) => task.status === "Completed").length,
+    inProgress: tasks.filter((task) => task.status === "In Progress").length,
+    notStarted: tasks.filter((task) => task.status === "Not Started").length,
+    total: tasks.length,
+  };
+
+  return (
+    <div className="p-6">
+      <Header />
+      <WelcomeSection
+        username="Sundar"
+        avatarUrl="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&h=150&auto=format"
+      />
+
+      <div className="grid grid-cols-12 gap-6">
+        <div className="col-span-8">
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between">
+              <CardTitle className="text-lg flex items-center">
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-5 w-5 mr-2 text-gray-500"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9 5H7C5.89543 5 5 5.89543 5 7V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V7C19 5.89543 18.1046 5 17 5H15"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M9 12L11 14L15 10"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                To-Do
+              </CardTitle>
+              <div className="flex items-center gap-2">
+                <p className="text-sm text-gray-500">20 June</p>
+                <span className="mx-2 text-sm text-gray-300">•</span>
+                <p className="text-sm text-gray-500">Today</p>
+                <Button size="sm" variant="ghost" className="ml-2">
+                  <PlusCircle className="h-4 w-4 mr-1" />
+                  <span>Add task</span>
+                </Button>
+              </div>
+            </CardHeader>
+            <CardContent>
+              {pendingTasks.map((task) => (
+                <TaskCard key={task.id} task={task} />
+              ))}
+            </CardContent>
+          </Card>
+        </div>
+
+        <div className="col-span-4 space-y-6">
+          <TaskStatusSection {...taskStats} />
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg flex items-center">
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-5 w-5 mr-2 text-gray-500"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9 12L11 14L15 10"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                </svg>
+                Completed Task
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {completedTasks.map((task) => (
+                <div key={task.id} className="mb-4 border rounded-lg p-4">
+                  <div className="flex items-start">
+                    <div className="h-4 w-4 mt-1 rounded-full bg-green-500 mr-2" />
+                    <div>
+                      <h3 className="font-medium">{task.title}</h3>
+                      <p className="text-sm text-gray-600 mt-1">
+                        {task.description}
+                      </p>
+                      <div className="mt-2">
+                        <p className="text-xs">
+                          <span className="text-green-500">
+                            Status: Completed
+                          </span>
+                        </p>
+                        <p className="text-xs text-gray-500">
+                          Completed{" "}
+                          {completedTasks.indexOf(task) === 0 ? "2" : "3"} days
+                          ago
+                        </p>
+                      </div>
+                    </div>
+                    {task.imageUrl && (
+                      <div className="ml-auto">
+                        <div className="w-16 h-16 rounded overflow-hidden">
+                          <img
+                            src={task.imageUrl}
+                            alt="Task"
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Dashboard;
+
+================
+File: app/routes/board/index.tsx
+================
+import React from "react";
+import Dashboard from "./Dashboard";
+
+const TodoList: React.FC = () => {
+  return <Dashboard />;
+};
+
+export default TodoList;
+
+================
+File: app/routes/board/WelcomeSection.tsx
+================
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+
+interface WelcomeSectionProps {
+  username: string;
+  avatarUrl?: string;
+}
+
+const WelcomeSection = ({ username, avatarUrl }: WelcomeSectionProps) => {
+  return (
+    <div className="flex justify-between items-center mb-6">
+      <div className="flex items-center">
+        <h2 className="text-2xl font-semibold">Welcome back, {username} 👋</h2>
+      </div>
+      <div className="flex items-center gap-3">
+        {/* Здесь можно добавить аватары команды как на изображении */}
+        <div className="flex -space-x-2">
+          {[1, 2, 3, 4, 5].map((index) => (
+            <Avatar key={index} className="border-2 border-white h-8 w-8">
+              <AvatarImage
+                src={`https://api.dicebear.com/6.x/avataaars/svg?seed=${index}`}
+              />
+              <AvatarFallback>U{index}</AvatarFallback>
+            </Avatar>
+          ))}
+        </div>
+        <Button
+          variant="outline"
+          className="bg-white text-red-500 border-red-500 hover:bg-red-50"
+        >
+          Invite
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+export default WelcomeSection;
+
+================
+File: app/routes/home.tsx
+================
+import type { Route } from "./+types/home";
+import TodoList from "./board";
+
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: "To-Do App" },
+    { name: "description", content: "Create a to-do on the go!" },
+  ];
+}
+
+export default function Home() {
+  return (
+    <>
+      <div>
+        <TodoList />
+      </div>
+    </>
+  );
+}
+
+================
+File: app/routes/tasks/TaskCard.tsx
+================
+import { MoreHorizontal } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import type { Task } from "@/types/Task";
+
+interface TaskCardProps {
+  task: Task;
+}
+
+const TaskCard = ({ task }: TaskCardProps) => {
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "Completed":
+        return "bg-green-100 text-green-600";
+      case "In Progress":
+        return "bg-blue-100 text-blue-600";
+      default:
+        return "bg-red-100 text-red-600";
+    }
+  };
+
+  // Форматирование даты
+  const formatDate = (date: Date) => {
+    return date.toLocaleDateString("en-US", { day: "numeric", month: "short" });
+  };
+
+  return (
+    <Card className="mb-4 border-l-4 border-l-blue-500 shadow-sm">
+      <CardContent className="p-4">
+        <div className="flex justify-between">
+          <div className="flex-1">
+            <div className="flex items-start">
+              <div className="h-4 w-4 mt-1 rounded-full border-2 border-blue-500 mr-2" />
+              <div>
+                <h3 className="font-medium">{task.title}</h3>
+                <p className="text-sm text-gray-600 mt-1">{task.description}</p>
+              </div>
+            </div>
+            <div className="mt-4 flex items-center justify-between">
+              <div>
+                <p className="text-xs text-gray-500">
+                  Priority:{" "}
+                  <span className="text-gray-700">{task.priority}</span>
+                </p>
+                <p className="text-xs text-gray-500">
+                  Status:
+                  <span
+                    className={`inline-block ml-1 px-2 py-0.5 rounded-full text-xs ${getStatusColor(
+                      task.status
+                    )}`}
+                  >
+                    {task.status}
+                  </span>
+                </p>
+              </div>
+              <p className="text-xs text-gray-500">
+                Created on: {formatDate(task.createdAt)}
+              </p>
+            </div>
+          </div>
+          <div className="ml-4">
+            {task.imageUrl && (
+              <div className="w-16 h-16 rounded overflow-hidden">
+                <img
+                  src={task.imageUrl}
+                  alt="Task"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            )}
+            <Button
+              variant="ghost"
+              size="sm"
+              className="p-0 h-8 w-8 absolute top-2 right-2"
+            >
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+
+export default TaskCard;
+
+================
+File: app/routes/tasks/TaskStatusSection.tsx
+================
+// components/dashboard/TaskStatusSection.tsx
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+
+interface TaskStatusProps {
+  completed: number;
+  inProgress: number;
+  notStarted: number;
+  total: number;
+}
+
+const TaskStatusSection = ({
+  completed,
+  inProgress,
+  notStarted,
+  total,
+}: TaskStatusProps) => {
+  // Рассчитываем проценты
+  const completedPercent = Math.round((completed / total) * 100);
+  const inProgressPercent = Math.round((inProgress / total) * 100);
+  const notStartedPercent = Math.round((notStarted / total) * 100);
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="text-lg">Task Status</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="flex justify-around items-center">
+          <div className="flex flex-col items-center">
+            <div className="relative w-16 h-16">
+              <svg className="w-16 h-16" viewBox="0 0 36 36">
+                <circle
+                  cx="18"
+                  cy="18"
+                  r="16"
+                  fill="none"
+                  stroke="#e6e6e6"
+                  strokeWidth="2"
+                />
+                <circle
+                  cx="18"
+                  cy="18"
+                  r="16"
+                  fill="none"
+                  stroke="#4CAF50"
+                  strokeWidth="2"
+                  strokeDasharray={`${completedPercent}, 100`}
+                  strokeLinecap="round"
+                  transform="rotate(-90 18 18)"
+                />
+                <text
+                  x="18"
+                  y="20"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  fontSize="8"
+                  fill="#000"
+                >
+                  {completedPercent}%
+                </text>
+              </svg>
+            </div>
+            <p className="text-sm mt-2 text-center flex items-center">
+              <span className="h-2 w-2 bg-green-500 rounded-full mr-1 inline-block"></span>
+              Completed
+            </p>
+          </div>
+
+          <div className="flex flex-col items-center">
+            <div className="relative w-16 h-16">
+              <svg className="w-16 h-16" viewBox="0 0 36 36">
+                <circle
+                  cx="18"
+                  cy="18"
+                  r="16"
+                  fill="none"
+                  stroke="#e6e6e6"
+                  strokeWidth="2"
+                />
+                <circle
+                  cx="18"
+                  cy="18"
+                  r="16"
+                  fill="none"
+                  stroke="#2196F3"
+                  strokeWidth="2"
+                  strokeDasharray={`${inProgressPercent}, 100`}
+                  strokeLinecap="round"
+                  transform="rotate(-90 18 18)"
+                />
+                <text
+                  x="18"
+                  y="20"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  fontSize="8"
+                  fill="#000"
+                >
+                  {inProgressPercent}%
+                </text>
+              </svg>
+            </div>
+            <p className="text-sm mt-2 text-center flex items-center">
+              <span className="h-2 w-2 bg-blue-500 rounded-full mr-1 inline-block"></span>
+              In Progress
+            </p>
+          </div>
+
+          <div className="flex flex-col items-center">
+            <div className="relative w-16 h-16">
+              <svg className="w-16 h-16" viewBox="0 0 36 36">
+                <circle
+                  cx="18"
+                  cy="18"
+                  r="16"
+                  fill="none"
+                  stroke="#e6e6e6"
+                  strokeWidth="2"
+                />
+                <circle
+                  cx="18"
+                  cy="18"
+                  r="16"
+                  fill="none"
+                  stroke="#F44336"
+                  strokeWidth="2"
+                  strokeDasharray={`${notStartedPercent}, 100`}
+                  strokeLinecap="round"
+                  transform="rotate(-90 18 18)"
+                />
+                <text
+                  x="18"
+                  y="20"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  fontSize="8"
+                  fill="#000"
+                >
+                  {notStartedPercent}%
+                </text>
+              </svg>
+            </div>
+            <p className="text-sm mt-2 text-center flex items-center">
+              <span className="h-2 w-2 bg-red-500 rounded-full mr-1 inline-block"></span>
+              Not Started
+            </p>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+
+export default TaskStatusSection;
+
+================
+File: app/store/useTodoStore.ts
+================
+import { create } from "zustand";
+
+export interface Todo {
+  id: number;
+  title: string;
+  completed: boolean;
+}
+
+interface TodoStore {
+  todos: Todo[];
+  addTodo: (title: string) => void;
+  completedTodo: (id: number) => void;
+  deleteTodo: (id: number) => void;
+  getTodo: () => Todo[];
+}
+
+const useTodoStore = create<TodoStore>()(
+  (set, get) => ({
+    todos: [],
+    addTodo: (title: string) => {
+      set((state) => ({
+        todos: [...state.todos, 
+          {
+            id: Date.now(),
+            title,
+            completed: false,
+          }
+        ]
+      }))
+    },
+    completedTodo: (id: number) => {
+      set((state) => ({
+        todos: state.todos.map((todo)=> todo.id === id ? {...todo, completed: !todo.completed} : todo)
+      }))
+    },
+    deleteTodo: (id: number) => {
+      set((state)=>({
+        todos: state.todos.filter((todo)=> todo.id !== id)
+      }))
+    },
+
+    getTodo: () => get().todos
+  }),
+)
+
+export default useTodoStore;
+
+================
+File: app/types/Task.ts
+================
+export type TaskPriority = 'Low' | 'Moderate' | 'High';
+export type TaskStatus = 'Not Started' | 'In Progress' | 'Completed';
+
+export interface Task {
+  id: string;
+  title: string;
+  description: string;
+  dueDate: Date;
+  priority: TaskPriority;
+  status: TaskStatus;
+  createdAt: Date;
+  completedAt?: Date;
+  imageUrl?: string;
+}
+
+================
+File: components.json
+================
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": false,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "app/app.css",
+    "baseColor": "slate",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  },
+  "iconLibrary": "lucide"
+}
+
+================
+File: Dockerfile
+================
+FROM node:20-alpine AS development-dependencies-env
+COPY . /app
+WORKDIR /app
+RUN npm ci
+
+FROM node:20-alpine AS production-dependencies-env
+COPY ./package.json package-lock.json /app/
+WORKDIR /app
+RUN npm ci --omit=dev
+
+FROM node:20-alpine AS build-env
+COPY . /app/
+COPY --from=development-dependencies-env /app/node_modules /app/node_modules
+WORKDIR /app
+RUN npm run build
+
+FROM node:20-alpine
+COPY ./package.json package-lock.json /app/
+COPY --from=production-dependencies-env /app/node_modules /app/node_modules
+COPY --from=build-env /app/build /app/build
+WORKDIR /app
+CMD ["npm", "run", "start"]
+
+================
+File: package.json
+================
+{
+  "name": "to-do",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "react-router build",
+    "dev": "react-router dev",
+    "start": "react-router-serve ./build/server/index.js",
+    "typecheck": "react-router typegen && tsc"
+  },
+  "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@radix-ui/react-avatar": "^1.1.3",
+    "@radix-ui/react-slot": "^1.1.2",
+    "@radix-ui/react-tabs": "^1.1.3",
+    "@react-router/node": "^7.2.0",
+    "@react-router/serve": "^7.2.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "isbot": "^5.1.17",
+    "lucide-react": "^0.475.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router": "^7.2.0",
+    "shadcn": "2.4.0-canary.12",
+    "tailwind-merge": "^3.0.2",
+    "tailwindcss-animate": "^1.0.7",
+    "zustand": "^5.0.3"
+  },
+  "devDependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@react-router/dev": "^7.2.0",
+    "@tailwindcss/vite": "^4.0.0",
+    "@types/node": "^20",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.1",
+    "react-router-devtools": "^1.1.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.2",
+    "vite": "^5.4.11",
+    "vite-tsconfig-paths": "^5.1.4"
+  }
+}
+
+================
+File: react-router.config.ts
+================
+import type { Config } from "@react-router/dev/config";
+
+export default {
+  // Config options...
+  // Server-side render by default, to enable SPA mode set this to `false`
+  ssr: true,
+} satisfies Config;
+
+================
+File: README.md
+================
+# Welcome to React Router!
+
+A modern, production-ready template for building full-stack React applications using React Router.
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+
+## Features
+
+- 🚀 Server-side rendering
+- ⚡️ Hot Module Replacement (HMR)
+- 📦 Asset bundling and optimization
+- 🔄 Data loading and mutations
+- 🔒 TypeScript by default
+- 🎉 TailwindCSS for styling
+- 📖 [React Router docs](https://reactrouter.com/)
+
+## Getting Started
+
+### Installation
+
+Install the dependencies:
+
+```bash
+npm install
+```
+
+### Development
+
+Start the development server with HMR:
+
+```bash
+npm run dev
+```
+
+Your application will be available at `http://localhost:5173`.
+
+## Building for Production
+
+Create a production build:
+
+```bash
+npm run build
+```
+
+## Deployment
+
+### Docker Deployment
+
+This template includes three Dockerfiles optimized for different package managers:
+
+- `Dockerfile` - for npm
+- `Dockerfile.pnpm` - for pnpm
+- `Dockerfile.bun` - for bun
+
+To build and run using Docker:
+
+```bash
+# For npm
+docker build -t my-app .
+
+# For pnpm
+docker build -f Dockerfile.pnpm -t my-app .
+
+# For bun
+docker build -f Dockerfile.bun -t my-app .
+
+# Run the container
+docker run -p 3000:3000 my-app
+```
+
+The containerized application can be deployed to any platform that supports Docker, including:
+
+- AWS ECS
+- Google Cloud Run
+- Azure Container Apps
+- Digital Ocean App Platform
+- Fly.io
+- Railway
+
+### DIY Deployment
+
+If you're familiar with deploying Node applications, the built-in app server is production-ready.
+
+Make sure to deploy the output of `npm run build`
+
+```
+├── package.json
+├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
+├── build/
+│   ├── client/    # Static assets
+│   └── server/    # Server-side code
+```
+
+## Styling
+
+This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+
+---
+
+Built with ❤️ using React Router.
+
+================
+File: tsconfig.json
+================
+{
+  "include": [
+    "**/*",
+    "**/.server/**/*",
+    "**/.client/**/*",
+    ".react-router/types/**/*"
+  ],
+  "compilerOptions": {
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "types": ["node", "vite/client"],
+    "target": "ES2022",
+    "module": "ES2022",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "rootDirs": [".", "./.react-router/types"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./app/*"]
+    },
+    "esModuleInterop": true,
+    "verbatimModuleSyntax": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true
+  }
+}
+
+================
+File: vite.config.ts
+================
+import { reactRouter } from "@react-router/dev/vite";
+import tailwindcss from "@tailwindcss/vite";
+import { defineConfig } from "vite";
+import tsconfigPaths from "vite-tsconfig-paths";
+
+export default defineConfig({
+  plugins: [tailwindcss(), reactRouter(), tsconfigPaths()],
+});
+
+
+
+================================================================
+End of Codebase
+================================================================

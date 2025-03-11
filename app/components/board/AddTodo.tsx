@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useTodoStore from "~/store/useTodoStore";
+import useTodoStore from "@/store/useTodoStore";
 
 export const AddTodo: React.FC = () => {
   const [title, setTitle] = useState("");

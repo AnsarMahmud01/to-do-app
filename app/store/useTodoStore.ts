@@ -1,17 +1,12 @@
+import type { Task } from "@/types/Task";
 import { create } from "zustand";
 
-export interface Todo {
-  id: number;
-  title: string;
-  completed: boolean;
-}
-
 interface TodoStore {
-  todos: Todo[];
+  todos: Task[];
   addTodo: (title: string) => void;
   completedTodo: (id: number) => void;
   deleteTodo: (id: number) => void;
-  getTodo: () => Todo[];
+  getTodo: () => Task[];
 }
 
 const useTodoStore = create<TodoStore>()(
@@ -24,6 +19,12 @@ const useTodoStore = create<TodoStore>()(
             id: Date.now(),
             title,
             completed: false,
+            status: "Not Started",
+            createdAt: new Date(),
+            dueDate: new Date(),
+            priority: "Low",
+            description: "",
+            imageUrl: "",
           }
         ]
       }))
